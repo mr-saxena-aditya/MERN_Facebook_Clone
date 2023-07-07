@@ -10,6 +10,10 @@ app.get('/about', (req, res) => {
     res.send('About : Welcome from the server!');
 });
 
+app.get('/contact', (req, res) => {
+    res.send('Contact : Welcome from the server!');
+});
+
 app.listen(8000, () => {
     console.log('Server is running on port 8000');
 })
