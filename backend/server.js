@@ -4,8 +4,6 @@ const cors = require('cors'); // Import the CORS middleware
 
 const app = express(); // Create an instance of the Express application
 
-let allowed = ['http://localhost:3000', 'some other link']; // Create an array of allowed origins
-
 app.use(cors());// Use the CORS middleware
 
 app.get('/', (req, res) => {
