@@ -6,6 +6,8 @@
 const express = require('express');
 const cors = require('cors');
 const { readdirSync } = require('fs');
+const dotenv = require('dotenv');   // Load the.env file
+dotenv.config(); // Read the.env file
 
 const app = express(); // Create an instance of the Express application
 
