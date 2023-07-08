@@ -14,6 +14,8 @@ dotenv.config(); // Load the .env file
 
 const app = express(); // Create an instance of the Express application
 
+app.use(express.json()); // Use the Express JSON middleware to parse incoming requests as JSON objects 
+
 app.use(cors()); // Use the CORS middleware to allow cross-origin requests
 
 // Register routes
