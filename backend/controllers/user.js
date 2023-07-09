@@ -53,10 +53,9 @@ exports.register = async (req, res) => {
     }
 
     if (!validateTextLength(username, 8, 20)) {
-      console.error("The username must be between 2 and 20 characters long.");
-      return res.status(400).json({ error: "The username must be between 2 and 20 characters long." });
+      console.error("The username must be between 8 and 20 characters long.");
+      return res.status(400).json({ error: "The username must be between 8 and 20 characters long." });
     }
-
 
     // Validate the length and strength of the password
     if (password.length < 10) {
