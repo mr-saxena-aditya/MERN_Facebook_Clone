@@ -19,4 +19,8 @@ exports.validateEmail = (email) => {
     // Convert email to lowercase and match against the regular expression
     return emailRegex.test(String(email).toLowerCase());
   };
-  
+
+
+  exports.validateTextLength = (text, min, max) => {
+    return text.length >= min && text.length <= max;
+  };

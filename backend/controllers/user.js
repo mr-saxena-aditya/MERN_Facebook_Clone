@@ -1,5 +1,6 @@
 const User = require("../models/User"); // Import the User model
 const { validateEmail } = require("../helpers/validation"); // Import the validateEmail helper function
+const { validateTextLength } = require("../helpers/validation"); // Import the validateTextLength helper function
 
 /**
  * Registers a new user.
@@ -40,11 +41,22 @@ exports.register = async (req, res) => {
       return res.status(400).json({ error: "Please enter a valid email address." });
     }
 
-    // Validate the length of first_name and last_name
-    if (first_name.length < 2 || last_name.length < 2) {
-      console.error("First name and last name must be at least 2 characters long.");
-      return res.status(400).json({ error: "First name and last name must be at least 2 characters long." });
+    // Validate the length of the username, first_name, and last_name using the helper function
+    if (!validateTextLength(first_name, 2, 20)) {
+      console.error("The first name must be between 2 and 20 characters long.");
+      return res.status(400).json({ error: "The first name must be between 2 and 20 characters long." });
     }
+
+    if (!validateTextLength(last_name, 2, 20)) {
+      console.error("The last name must be between 2 and 20 characters long.");
+      return res.status(400).json({ error: "The last name must be between 2 and 20 characters long." });
+    }
+
+    if (!validateTextLength(username, 8, 20)) {
+      console.error("The username must be between 2 and 20 characters long.");
+      return res.status(400).json({ error: "The username must be between 2 and 20 characters long." });
+    }
+
 
     // Validate the length and strength of the password
     if (password.length < 10) {
