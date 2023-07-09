@@ -51,7 +51,7 @@ const userSchema = new Schema(
     // Gender of the user (can be 'male' or 'female', defaults to 'male')
     gender: {
       type: String,
-      enum: ['male', 'female'],
+      enum: ['male', 'female', 'other'],
       default: 'male',
       required: [true, 'gender is required for creating a user'],
     },
