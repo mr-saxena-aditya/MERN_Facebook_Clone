@@ -4,9 +4,9 @@
 
 const mongoose = require('mongoose');
 
-const ObjectId = mongoose.Schema;
+const { Schema } = mongoose; // Use destructuring to access the Schema class
 
-const userSchema = new mongoose.Schema(
+const userSchema = new Schema(
   {
     // First name of the user
     first_name: {
@@ -15,7 +15,6 @@ const userSchema = new mongoose.Schema(
       trim: true,
       text: true,
     },
-
     // Last name of the user
     last_name: {
       type: String,
@@ -23,7 +22,6 @@ const userSchema = new mongoose.Schema(
       trim: true,
       text: true,
     },
-
     // Unique username of the user
     username: {
       type: String,
@@ -32,7 +30,6 @@ const userSchema = new mongoose.Schema(
       text: true,
       unique: true,
     },
-
     // Email of the user
     email: {
       type: String,
@@ -40,20 +37,17 @@ const userSchema = new mongoose.Schema(
       trim: true,
       unique: true,
     },
-
     // Password of the user
     password: {
       type: String,
       required: [true, 'password is required for creating a user'],
     },
-
     // Profile picture of the user (defaults to a placeholder image)
     picture: {
       type: String,
       default:
         'https://www.flaticon.com/free-icon/user_1077114?term=user&page=1&position=3&origin=search&related_id=1077114',
     },
-
     // Gender of the user (can be 'male' or 'female', defaults to 'male')
     gender: {
       type: String,
@@ -61,47 +55,39 @@ const userSchema = new mongoose.Schema(
       default: 'male',
       required: [true, 'gender is required for creating a user'],
     },
-
     // Date of birth of the user
     date_of_birth: {
       type: Date,
       required: [true, 'date_of_birth is required for creating a user'],
       trim: true,
     },
-
     verified: {
-      type: 'boolean',
+      type: Boolean,
       required: [true, 'verified is required for creating a user'],
       default: false,
     },
-
     friends: {
       type: Array,
       default: [],
     },
-
     following: {
       type: Array,
       default: [],
     },
-
     followers: {
       type: Array,
       default: [],
     },
-
     requests: {
       type: Array,
       default: [],
     },
-
     search: {
       user: {
-        type: ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
       },
     },
-
     details: {
       bio: {
         type: String,
@@ -184,21 +170,19 @@ const userSchema = new mongoose.Schema(
         default: '',
       },
     },
-
     saved_posts: [
       {
         post: {
-          type: ObjectId,
+          type: mongoose.Schema.Types.ObjectId,
           ref: 'Post',
         },
         saved_on: {
           type: Date,
-          default: new Date(),
+          default: Date.now,
         },
       },
     ],
   },
-  // Enable timestamps for createdAt and updatedAt fields
   { timestamps: true }
 );
 
