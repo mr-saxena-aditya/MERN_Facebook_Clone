@@ -4,6 +4,8 @@
 
 const mongoose = require('mongoose');
 
+const ObjectId  = mongoose.Schema;
+
 const userSchema = new mongoose.Schema({
     // First name of the user
     first_name: {
@@ -63,6 +65,126 @@ const userSchema = new mongoose.Schema({
         default: false,  
     },
     friends: {
-        
-    }
-});
+        type: Array,
+        default: []
+    },
+    following: {
+        type: Array,
+        default: []
+    },
+    followers: {
+        type: Array,
+        default: []
+    },
+    requests: { 
+        type: Array,
+        default: []
+    },
+    search : { 
+        user: {
+            type: ObjectId,
+            ref: 'User'
+        }
+    },
+    details : { 
+        bio : {
+            type: String,
+            default: ''
+        },
+        relationship : {
+            type: String,
+            enum: ['single', 'committed', 'married', 'divorced', 'widowed', 'its complicated', 'other'],
+        },
+        location : {
+            type: String,
+            default: ''
+        },
+        current_country : {
+            type: String,
+            default: ''
+        },
+        current_state : {
+            type: String,
+            default: ''
+        }, 
+        current_city : {
+            type: String,
+            default: ''
+        },
+        home_country : {
+            type: String,
+            default: ''
+        },
+        home_state : {
+            type: String,
+            default: ''
+        },
+        home_city : {
+            type: String,
+            default: ''
+        },
+        website : {
+            type: String,
+            default: ''
+        }, 
+        work : {
+            type: String,
+            default: ''
+        }, 
+        education : {
+            type: String,
+            default: ''
+        }, 
+        high_school: {
+            type: String,
+            default: ''
+        }, 
+        college : {
+            type: String,
+            default: ''
+        },
+        university : { 
+            type: String,
+            default: ''
+        }, 
+        major : {
+            type: String,
+            default: ''
+        }, 
+        minor : {
+            type: String,
+            default: ''
+        },
+        hobbies : {
+            type: String,
+            default: ''
+        }, 
+        skills : {
+            type: String,
+            default: ''
+        }, 
+        interests : {
+            type: String,
+            default: ''
+        }, 
+    },
+    saved_posts : [
+        {
+            post : {
+                type: ObjectId,
+                ref: 'Post'
+            },
+            saved_on : {
+                type: Date,
+                default: new Date()
+            }
+        }
+    ]
+},
+(
+    timestamps = true
+),
+    
+);
+
+module.exports = mongoose.model('User', userSchema);
